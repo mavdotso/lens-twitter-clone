@@ -1,10 +1,11 @@
 import { SessionType, useSession as useLensSession } from '@lens-protocol/react-web';
 import { useAccount as useWagmiAccount } from 'wagmi';
 import { ConnectWalletButton } from './connect-wallet-button';
-import { truncateEthAddress } from '@/lib/utils';
+import { resolveIpfsUri, truncateEthAddress } from '@/lib/utils';
 import { LoginForm } from './login-form';
 import { DisconnectWalletButton } from './disconnect-wallet-button';
 import { LogoutButton } from './logout-button';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export function WelcomeToLens() {
     const { isConnected, address } = useWagmiAccount();
@@ -36,11 +37,18 @@ export function WelcomeToLens() {
 
     // step 3. show Profile details
     if (session && session.type === SessionType.WithProfile) {
+        const profilePicture = resolveIpfsUri(session.profile.metadata?.picture as string | undefined);
         return (
             <>
-                <p className="mb-4 text-gray-500">
-                    You are logged in as <span className="text-gray-800 font-semibold">{session.profile.handle?.fullHandle ?? session.profile.id}</span>.
-                </p>
+                <div className="flex items-center mb-4">
+                    <Avatar className="mr-2">
+                        <AvatarImage src={profilePicture} />
+                        <AvatarFallback>{session.profile.handle?.localName?.slice(0, 2).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <p className="text-gray-500">
+                        You are logged in as <span className="font-semibold text-gray-800">{session.profile.handle?.fullHandle ?? session.profile.id}</span>.
+                    </p>
+                </div>
                 <LogoutButton />
             </>
         );

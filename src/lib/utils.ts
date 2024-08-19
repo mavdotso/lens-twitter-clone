@@ -42,3 +42,11 @@ export function followButtonLabel(policy: SupportedFollowPolicy): string {
             return `Follow for ${formatFollowFee(policy)}`;
     }
 }
+
+export function resolveIpfsUri(uri: string | undefined | null): string {
+    if (!uri || typeof uri !== 'string') return '';
+    if (uri.startsWith('ipfs://')) {
+        return `https://ipfs.io/ipfs/${uri.slice(7)}`;
+    }
+    return uri;
+}

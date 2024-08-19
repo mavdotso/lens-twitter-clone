@@ -18,7 +18,6 @@ export function ExploreProfiles() {
 
     return (
         <div className="space-y-4 w-full">
-            <h2 className="font-bold text-2xl">Explore Profiles</h2>
             <ul className="space-y-4">
                 {data.map((profile) => (
                     <li key={profile.id} className="flex items-center space-x-4">
