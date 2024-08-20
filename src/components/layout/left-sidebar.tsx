@@ -13,7 +13,7 @@ export default function LeftSidebar() {
     ];
 
     return (
-        <div className="w-64 h-full">
+        <div className="w-2/6 h-full">
             <div className="relative p-4 w-64 h-full">
                 <div className='fixed flex flex-col space-y-4 pb-8 max-w-52 h-full overflow-y-auto'>
                     <div>

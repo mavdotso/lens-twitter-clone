@@ -7,7 +7,7 @@ import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 import { formatDistanceToNow } from 'date-fns';
 import { CommentIcon, RetweetIcon } from '../icons';
 import { HeartIcon } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { ProfileAvatar } from '../profile/profile-avatar';
 
 
 export function ExplorePublications() {
@@ -39,16 +39,8 @@ export function ExplorePublications() {
                 {data.map((publication) => (
                     <li key={publication.id} className="shadow-sm hover:shadow-md p-4 border rounded-lg transition-shadow">
                         <div className="flex items-start space-x-3">
-                            {/* <img
-                                src={publication.profile.picture?.original?.url || '/default-avatar.png'}
-                                alt={`${publication.profile.handle}'s avatar`}
-                                className="rounded-full w-12 h-12"
-                            /> */}
-                            <Avatar>
-                                <AvatarImage src={publication.by.metadata?.picture || ''} />
-                                <AvatarFallback>{publication.by.handle?.localName?.slice(0, 2).toUpperCase()}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
+                            <ProfileAvatar profile={publication.by} className="mr-4" />
+                            <div className="flex-1 overflow-hidden">
                                 <div className="flex justify-between items-top">
                                     <div className="flex flex-col">
                                         <span className="font-bold">{publication.by.handle?.localName || ''}</span>
@@ -58,7 +50,6 @@ export function ExplorePublications() {
                                 </div>
                                 {/* Publication content */}
                                 <p className="mt-2">{getPublicationContent(publication.metadata)}</p>
-                                {/* Add interaction buttons */}
                                 <div className="flex items-center space-x-6 mt-3 text-gray-500">
                                     <button className="flex items-center space-x-2">
                                         <CommentIcon className="w-5 h-5" />

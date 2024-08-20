@@ -6,6 +6,7 @@ import { LoginForm } from './login-form';
 import { DisconnectWalletButton } from './disconnect-wallet-button';
 import { LogoutButton } from './logout-button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { ProfileAvatar } from './profile/profile-avatar';
 
 export function WelcomeToLens() {
     const { isConnected, address } = useWagmiAccount();
@@ -40,11 +41,8 @@ export function WelcomeToLens() {
         const profilePicture = resolveIpfsUri(session.profile.metadata?.picture as string | undefined);
         return (
             <>
-                <div className="flex items-center mb-4">
-                    <Avatar className="mr-2">
-                        <AvatarImage src={profilePicture} />
-                        <AvatarFallback>{session.profile.handle?.localName?.slice(0, 2).toUpperCase()}</AvatarFallback>
-                    </Avatar>
+                <div className="flex items-center gap-2 mb-4">
+                    <ProfileAvatar profile={session.profile} />
                     <p className="text-gray-500">
                         You are logged in as <span className="font-semibold text-gray-800">{session.profile.handle?.fullHandle ?? session.profile.id}</span>.
                     </p>

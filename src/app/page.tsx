@@ -8,7 +8,7 @@ import LeftSidebar from '@/components/layout/left-sidebar';
 export default function Home() {
     return (
         <Layout>
-            <div className="flex mx-auto">
+            <div className="flex mx-auto w-full">
                 <LeftSidebar />
                 <MainContent />
                 <RightSidebar />
