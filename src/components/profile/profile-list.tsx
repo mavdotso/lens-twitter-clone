@@ -3,6 +3,7 @@ import { ProfileAvatar } from './profile-avatar';
 import { FollowButton } from '../follow/follow-button';
 import { useState } from 'react';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 interface ProfileListProps {
     profiles: Profile[];
@@ -29,10 +30,10 @@ export function ProfileList({ profiles, loading, error, hasMore, onLoadMore }: P
             <ul className="space-y-4">
                 {profiles.slice(0, displayCount).map((profile) => (
                     <li key={`${profile.id}-${profile.handle?.fullHandle}`} className="flex justify-between items-center space-x-4">
-                        <div className="flex items-center space-x-4">
+                        <Link href={`/profile/${profile.handle?.localName}`} className="flex flex-grow items-center space-x-4">
                             <ProfileAvatar profile={profile} />
                             <span>{profile.handle?.fullHandle}</span>
-                        </div>
+                        </Link>
                         <FollowButton profile={profile} />
                     </li>
                 ))}

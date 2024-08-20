@@ -6,6 +6,9 @@ const nextConfig = {
         config.externals.push('pino-pretty', 'encoding');
         return config;
     },
+    images: {
+        domains: ['ik.imagekit.io'],
+    },
 };
 
 export default nextConfig;
