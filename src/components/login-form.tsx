@@ -2,7 +2,6 @@ import { profileId, useLogin, useProfilesManaged } from '@lens-protocol/react-we
 import { Loading } from './loading';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 
 export function LoginForm({ owner, onSuccess }: { owner: string; onSuccess?: () => void }) {
     const { execute: login, loading: isLoginPending } = useLogin();
@@ -43,26 +42,26 @@ export function LoginForm({ owner, onSuccess }: { owner: string; onSuccess?: () 
 
     return (
         <form onSubmit={onSubmit} className="flex">
-            <fieldset className="flex place-items-center flex-col">
+            <fieldset className="flex flex-col place-items-center">
                 <legend className="text-base text-gray-500">Select a Lens Profile to login with.</legend>
-                <div className="my-4 space-y-2">
-                        {profiles.map((profile, idx) => (
-                            <label
-                                key={profile.id}
-                                className="w-full items-center p-4 rounded-lg cursor-pointer border transition-colors border-gray-300 hover:border-gray-500 grid grid-cols-[24px_auto]"
-                            >
-                                <input
-                                    disabled={isLoginPending}
-                                    type="radio"
-                                    defaultChecked={idx === 0}
-                                    name="id"
-                                    value={profile.id}
-                                    className="box-content h-1.5 w-1.5 appearance-none rounded-full border-[5px] border-white bg-white bg-clip-padding outline-none ring-1 ring-gray-950/10 checked:border-green-500 checked:ring-green-500"
-                                />
-                                <span className="text-gray-800 text-sm font-semibold">{profile.handle?.fullHandle ?? profile.id}</span>
-                            </label>
-                        ))}
-                    </div>
+                <div className="space-y-2 my-4">
+                    {profiles.map((profile, idx) => (
+                        <label
+                            key={profile.id}
+                            className="items-center border-gray-300 hover:border-gray-500 grid grid-cols-[24px_auto] p-4 border rounded-lg w-full transition-colors cursor-pointer"
+                        >
+                            <input
+                                disabled={isLoginPending}
+                                type="radio"
+                                defaultChecked={idx === 0}
+                                name="id"
+                                value={profile.id}
+                                className="box-content border-[5px] border-white checked:border-green-500 bg-clip-padding bg-white rounded-full ring-1 ring-gray-950/10 checked:ring-green-500 w-1.5 h-1.5 appearance-none outline-none"
+                            />
+                            <span className="font-semibold text-gray-800 text-sm">{profile.handle?.fullHandle ?? profile.id}</span>
+                        </label>
+                    ))}
+                </div>
 
                 <div>
                     <Button disabled={isLoginPending} type="submit">
