@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 
 export default function RightSidebar() {
     return (
-        <div className="p-4 w-2/6">
+        <div className="p-8 w-1/3">
             <div className="mb-4">
                 <Input
                     type="text"
