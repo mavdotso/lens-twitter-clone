@@ -3,15 +3,15 @@ import { WelcomeToLens } from '../welcome-to-lens';
 import { Button } from '../ui/button';
 import { HomeIcon, ExploreIcon, NotificationIcon, MessageIcon, ProfileIcon } from '../icons';
 
-export default function LeftSidebar() {
-    const menuItems = [
-        { name: 'Home', icon: HomeIcon, href: '/' },
-        { name: 'Explore', icon: ExploreIcon, href: '/explore' },
-        { name: 'Notifications', icon: NotificationIcon, href: '/notifications' },
-        { name: 'Messages', icon: MessageIcon, href: '/messages' },
-        { name: 'Profile', icon: ProfileIcon, href: '/profile' },
-    ];
+const menuItems = [
+    { name: 'Home', icon: HomeIcon, href: '/' },
+    { name: 'Explore', icon: ExploreIcon, href: '/explore' },
+    { name: 'Notifications', icon: NotificationIcon, href: '/notifications' },
+    { name: 'Messages', icon: MessageIcon, href: '/messages' },
+    { name: 'Profile', icon: ProfileIcon, href: '/profile' },
+];
 
+export default function LeftSidebar() {
     return (
         <div className="top-0 sticky w-1/5 h-screen">
             <div className="p-4 h-full">
